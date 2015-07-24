@@ -1,0 +1,10 @@
+@import "core/base";
+
+// display
+.ib {
+	@include inline-block;
+}
+
+.hide {
+	display: none;
+}

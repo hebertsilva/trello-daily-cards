@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+{% extends "base.html" %}
 
-	<title>Trello daily cards</title>
-	<link rel="stylesheet" href="static/css/app.css">
-</head>
-<body>
-	
-</body>
-</html>
+{% block content %}
+	<section class="site-login">
+		<div class="inner-login">
+			<div class="wrap">
+				<span class="icon"></span>
+				
+				<h1 class="name">Organizar seus tickets do Trello com o <strong>APPChicken</strong> nunca foi tão fácil.</h1>
+
+				<a href="/login/" class="btn btn-green btn-login">Login for trello</a>
+			</div>
+		</div>
+	</section> <!-- /.site-login -->
+{% endblock %}

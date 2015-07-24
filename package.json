@@ -17,7 +17,12 @@
   },
   "homepage": "https://github.com/hebertsilva/trello-daily-cards",
   "devDependencies": {
+    "cookie": "^0.1.3",
+    "cookie-parser": "^1.3.5",
     "express": "^4.13.1",
-    "node-trello": "^1.1.2"
+    "express-session": "^1.11.3",
+    "moment": "^2.10.3",
+    "node-trello": "^1.1.2",
+    "nunjucks": "^1.3.4"
   }
 }

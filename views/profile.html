@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block extra_js %}
+	<script src="/static/js/libs/lodash.js"></script>
+	<script src="/static/js/views/ProfileView.js"></script>
+
+	<script>
+		window.__CARDS_ME__ = '/cards/me/';
+	</script>
+
+	<script type="text/template" id="template-cards-all">
+	<% if (objects) { %>
+		<ul class="list-cards">
+			<% _(objects).each(function(item) { %>
+			<li class="card">
+				<p class="name"><%= item.name %></p>
+				<p class="labels"><%= item.labels %></p>
+				<% if (item.cards) { %>
+				<ul>
+				    <li></li>
+				    <li></li>
+				    <li></li>
+				    <li></li>
+				</ul>
+				<% } %>
+			</li>
+	 		<% }); %>
+		</ul>
+	<% } %>
+	</script>
+{% endblock %}
+
+{% block content %}
+<header class="site-header">
+	<a href="/profile/me/" class="logo"></a>
+	<span class="line"></span>
+	<div class="ib customer">
+		<p class="name">{{ customer.fullName }}</p>
+		
+		<div class="account">
+			<a href="{{ customer.url }}" title="{{ customer.url }}">Profile</a>
+			<a href="/logout/" class="btn-logout">Sair</a>
+		</div>
+	</div>
+</header> <!-- /.site-header -->
+
+<section class="wrap-cards show-cards">
+</section> <!-- /.list-tickets -->
+{% endblock %}
+
+{% block loading %}
+	<div class="loading-page">
+		<div class="throbber-loader"></div>
+	</div>	
+{% endblock %}

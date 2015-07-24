@@ -1,0 +1,33 @@
+// font 
+
+@mixin font-1 {
+	font-family: 'Lato', sans-serif;
+}
+
+@mixin image($image) {
+	background-image: image-url('#{$image}');
+	width: image-width('#{$image}');
+	height: image-height('#{$image}');
+}
+
+@mixin animation ($stuff) {
+    -webkit-animation: $stuff;
+    -moz-animation: $stuff;
+    -ms-animation: $stuff;
+    animation: $stuff;
+}
+
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+		@content; 
+	}
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+	@-ms-keyframes #{$name} {
+		@content;
+	}
+	@keyframes #{$name} {
+		@content;
+	} 
+}

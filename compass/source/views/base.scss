@@ -1,0 +1,214 @@
+@import "core/base";
+@import "core/mixins";
+
+
+// variables
+$color-base: #787878;
+$color-bg: #f1f1f1;
+$color-white: #ffffff;
+$color-blue: #2A79A6;
+$color-gray-light: #ccc;
+$color-green: #43B31F;
+$color-green-dark: #3A9A1A;
+
+body,
+html {
+	@include font-1;
+	color: $color-base;
+	background: $color-bg;
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+}
+
+// defaults
+.btn {
+	@include inline-block;
+	@include box-sizing(border-box);
+	@include border-radius(5px);
+	@include box-shadow(1px 1px 1px $color-base);
+	color: $color-white;
+	font-size: 16px;
+	font-weight: 700;
+	padding: 20px 20px;
+	text-decoration: none;
+	outline: 0;
+	border: 0;
+}
+
+.btn-green {
+	@include background-image(linear-gradient($color-green, $color-green-dark));
+
+	&:hover {
+		background: $color-green-dark;
+	}
+}
+
+// loading
+.loading-page {
+	background: rgba($color-white, 0.8);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+
+	> div {
+		@include transform(translate3d(-50%, -50%, 0));
+		position: absolute;
+		left: 50%;
+		top: 50%;
+	}
+}
+
+// login
+.site-login {
+	background-color: $color-bg;
+	width: 100%;
+	height: 100%;
+
+	.inner-login {
+		@include transform(translate3d(0, -50%, 0));
+		position: relative;
+		top: 50%;
+		margin: 0 auto;
+		vertical-align: middle;
+		width: 450px;
+		text-align: center;
+
+		.icon {
+			@include inline-block;
+			@include image('logo-large.png');
+			margin-bottom: 50px;
+		}
+
+		.wrap {
+			@include box-shadow(2px 2px 5px rgba($color-base, 0.2));
+			@include box-sizing(border-box);
+			@include border-radius(5px);
+			background-color: $color-white;
+			padding: 50px;
+		}
+
+		.name {
+			color: $color-blue;
+			font-size: 22px;
+			font-weight: 300;
+			line-height: 1.5em;
+
+			strong {
+				font-weight: 600;
+			}
+		}
+
+		.btn-login {
+			margin-top: 50px;
+		}
+	}
+}
+
+// dashboard
+.site-header {
+	@include box-sizing(border-box);
+	background-color: $color-blue;
+	width: 100%;
+	padding: 10px 20px;
+
+	.logo {
+		@include inline-block;
+		@include image('logo-small-white.png');
+	}
+
+	.line {
+		@include inline-block;
+		border-left: 1px solid $color-white;
+		height: 30px;
+		margin: 0 20px;
+	}
+
+	.name {
+		@include inline-block;
+		color: $color-white;
+		font-weight: 300;
+		font-size: 14px;
+	}
+
+	> .customer {
+		position: relative;
+		padding: 10px 0;
+
+		&:hover {
+			.account {
+				display: block;
+			}
+		}
+	}
+
+	.account {
+		@include box-shadow(2px 2px 5px rgba($color-base, 0.2));
+		@include box-sizing(border-box);
+		@include border-radius(5px);
+		background: $color-white;
+		position: absolute;
+		padding: 20px;
+		min-width: 200px;
+		z-index: 99;
+		top: 35px;
+		display: none;
+
+		a {
+			color: $color-base;
+			display: block;
+			text-decoration: none;
+
+			&:not(:last-child) {
+				margin-bottom: 10px;
+			}
+
+			&:hover {
+				color: darken($color-base, 10%);
+			}
+		}
+
+		&:before {
+			content: "";
+			width: 0; 
+			height: 0; 
+			border-left: 7px solid transparent;
+			border-right: 7px solid transparent;
+			border-bottom: 7px solid $color-white;
+			position: absolute;
+			top: -7px;
+			left: 7px;
+		}
+	}
+}
+
+
+// tickets
+.wrap-cards {
+	@include box-sizing(border-box);
+	background: $color-bg;
+	padding: 15px 15px;
+	min-height: calc(100% - 56px);
+	position: relative;
+
+	.list-cards {
+		overflow: hidden;
+
+		.card {
+			@include box-shadow(2px 2px 5px rgba($color-base, 0.2));
+			@include box-sizing(border-box);
+			@include border-radius(5px);
+			background: $color-white;
+			float: left;
+			width: calc(100% / 4 - 10px);
+			margin: 5px 5px;
+			padding: 20px;
+
+			p {
+				font-size: 14px;
+			}
+		}
+	}
+}
