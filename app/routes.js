@@ -13,7 +13,6 @@ function authorize(req) {
 }
 
 module.exports = function( app ) {	
-	// get profile members
 	app.get('/profile/me/', function(req, res){
 		if ( authorize(req) ) {
 			t.get('/1/members/me', function(err, customer) {
@@ -29,8 +28,6 @@ module.exports = function( app ) {
 		if ( authorize( req ) ) {
 			var boards;
 			t.get('/1/members/me/boards/', function(err, data) {
-				// boards = data
-				// console.log(data);
 				boards = data.map(function( item ){
 					return {
 						id: item.id,
@@ -48,7 +45,9 @@ module.exports = function( app ) {
 				  			idBoard: item.idBoard,
 				  			id: item.id,
 				  			date: item.dateLastActivity,
-				  			name: item.name
+				  			dateCurrent: moment(item.dateLastActivity).format('DD/MM/YYYY'),
+				  			name: item.name,
+				  			idList: item.idList
 				  		}
 				  	}).filter(function( item ){
 				  		var dc = moment(item.date);
@@ -69,31 +68,11 @@ module.exports = function( app ) {
 				  		});
 				  	});
 
-				  	console.log(boards);
+				  	// console.log(boards);
 
 				  	res.json(boards);
 				});
 			});
-
-
-			// t.get('/1/members/me/', { cards: 'open' }, function(err, data) {
-			//   	if (err) throw err;
-			  	
-			//   	cards = data.cards.map(function( item ){
-			//   		return {
-			//   			id: item.id,
-			//   			date: item.dateLastActivity,
-			//   			name: item.name
-			//   		}
-			//   	}).filter(function( item ){
-			//   		var dc = moment(item.date);
-			//   		if ( moment().subtract(5, 'd').isBefore(dc) ) {
-			// 			return item;
-			// 		}
-			//   	});
-			//   	// console.log(cards);
-			//   	res.json(cards);
-			// });
 		}
 	});
 

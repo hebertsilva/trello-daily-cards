@@ -8,24 +8,36 @@
 		window.__CARDS_ME__ = '/cards/me/';
 	</script>
 
-	<script type="text/template" id="template-cards-all">
+	<script type="text/template" id="template-boards-all">
 	<% if (objects) { %>
-		<ul class="list-cards">
-			<% _(objects).each(function(item) { %>
-			<li class="card">
-				<p class="name"><%= item.name %></p>
-				<p class="labels"><%= item.labels %></p>
-				<% if (item.cards) { %>
-				<ul>
-				    <li></li>
-				    <li></li>
-				    <li></li>
-				    <li></li>
-				</ul>
-				<% } %>
+		<p class="title">Meus boards</p>
+
+		<ul>
+			<% _(objects).each(function(board) { %>
+			<li class="board" data-board="<%= board.id %>">
+				<span class="label" style="background-color: <%= board.bg %>"></span>
+				<p class="name"><%= board.name %></p>
 			</li>
 	 		<% }); %>
 		</ul>
+	<% } %>
+	</script>
+
+	<script type="text/template" id="template-cards-all">
+	<% if (objects) { %>
+		<% _(objects).each(function(board) { %>
+			<% if (board.cards.length) { %>
+				<ul class="clearfix" data-card="<%= board.id %>">
+					<% _(board.cards).each(function(card) { %>
+						<li class="cards">
+							<a href=""><%= card.name %></a>
+
+							<span><%= card.dateCurrent %></span>
+						</li>
+		 			<% }); %>
+				</ul>
+	 		<% } %>
+	 	<% }); %>
 	<% } %>
 	</script>
 {% endblock %}
@@ -44,7 +56,14 @@
 	</div>
 </header> <!-- /.site-header -->
 
-<section class="wrap-cards show-cards">
+<section class="wrapper-boards clearfix">
+	<div class="list-boards show-boards">
+		
+	</div>
+
+	<div class="list-cards show-cards">
+		
+	</div>
 </section> <!-- /.list-tickets -->
 {% endblock %}
 

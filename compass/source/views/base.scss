@@ -186,29 +186,93 @@ html {
 
 
 // tickets
-.wrap-cards {
+.wrapper-boards {
 	@include box-sizing(border-box);
 	background: $color-bg;
-	padding: 15px 15px;
 	min-height: calc(100% - 56px);
 	position: relative;
 
-	.list-cards {
-		overflow: hidden;
+	> div {
+		@include box-sizing(border-box);
+		float: left;
 
-		.card {
+		$size-boards: 300px;
+		&:first-child {
+			width: $size-boards;
+			height: 100%;
+		}
+
+		&:last-child {
+			width: calc(100% - #{$size-boards});
+			padding: 10px;
+		}
+	}
+
+	.list-boards {
+		@include box-shadow(0 2px 5px rgba($color-base, 0.3));
+		@include box-sizing(border-box);
+		background: $color-white;
+		padding: 5px;
+
+		.title {
+			color: $color-base;
+			font-size: 16px;
+			margin: 20px 0;
+		}
+
+		.board {
+			@include box-sizing(border-box);
+			@include border-radius(5px);
+			background: rgba($color-blue, 0.1);
+			width: 100%;
+			margin-bottom: 5px;
+			cursor: pointer;
+
+			.label {
+				@include border-radius(5px 0 0 5px);
+				@include inline-block;
+				width: 50px;
+				height: 50px;
+				margin-right: 10px;
+			}
+
+			p {
+				@include inline-block;
+				font-size: 14px;
+			}
+
+			&:hover, &:first-child {
+				color: darken($color-base, 10%);
+				background: rgba($color-blue, 0.3);
+			}
+		}
+	}
+
+	.list-cards {
+		ul {
+			&:not(:first-child) {
+				display: none;
+			}
+		}
+
+		.cards {
 			@include box-shadow(2px 2px 5px rgba($color-base, 0.2));
 			@include box-sizing(border-box);
 			@include border-radius(5px);
 			background: $color-white;
+			width: calc(100% / 4 - 8px);
 			float: left;
-			width: calc(100% / 4 - 10px);
-			margin: 5px 5px;
 			padding: 20px;
+			min-height: 150px;
+			margin-bottom: 10px;
 
-			p {
-				font-size: 14px;
+			&:not(:nth-child(4n)) {
+				margin-right: 10px;
 			}
+		}
+
+		a {
+			color: $color-base;
 		}
 	}
 }
