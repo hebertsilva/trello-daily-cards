@@ -9,6 +9,18 @@
 	display: none;
 }
 
+.db {
+	display: block;
+}
+
 .clearfix {
     @include pie-clearfix;
+}
+
+.font-small {
+	font-size: 10px;
+}
+
+.font-italic {
+	font-style: italic;
 }

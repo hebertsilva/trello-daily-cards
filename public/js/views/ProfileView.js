@@ -47,16 +47,19 @@ ProfileView.prototype = {
 	toggleCards: function( event ) {
 		var target = $(event.currentTarget);
 		var idBoard = target.data('board');
-		var board = $('.list-boards').find('.board').filter('[data-card="'+idBoard+'"]');
+		var card = $('.list-cards').find('.wrap-card').filter('[data-card="'+idBoard+'"]');
+		
+		$('.board').removeClass('active');
+		target.addClass('active');
 
-		console.log(board);
+		console.log(card);
 
-		if ( board.length ) {
-			var visible = $('[data-card]').not(board).filter(':visible');
+		if ( card.length ) {
+			var visible = $('[data-card]').not(card).filter(':visible');
 
 			if ( visible.length ) {
-                visibles.stop().fadeOut(function() {
-                    board.stop().fadeIn();
+                visible.stop().fadeOut(function() {
+                    card.stop().fadeIn();
                 });
             }
 		}

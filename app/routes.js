@@ -47,7 +47,8 @@ module.exports = function( app ) {
 				  			date: item.dateLastActivity,
 				  			dateCurrent: moment(item.dateLastActivity).format('DD/MM/YYYY'),
 				  			name: item.name,
-				  			idList: item.idList
+				  			idList: item.idList,
+				  			url: item.url
 				  		}
 				  	}).filter(function( item ){
 				  		var dc = moment(item.date);

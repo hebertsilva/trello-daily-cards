@@ -14,10 +14,15 @@
 
 		<ul>
 			<% _(objects).each(function(board) { %>
-			<li class="board" data-board="<%= board.id %>">
-				<span class="label" style="background-color: <%= board.bg %>"></span>
-				<p class="name"><%= board.name %></p>
-			</li>
+				<% if (board.cards.length) { %>
+					<li class="board" data-board="<%= board.id %>">
+						<span class="label" style="background-color: <%= board.bg %>"></span>
+						<p class="name">
+							<%= board.name %> <br>
+							<span class="font-small font-italic"><%= board.cards.length %> card<% if (board.cards.length > 1) { %>s<% } %></span>
+						</p>
+					</li>
+	 			<% } %>
 	 		<% }); %>
 		</ul>
 	<% } %>
@@ -27,15 +32,19 @@
 	<% if (objects) { %>
 		<% _(objects).each(function(board) { %>
 			<% if (board.cards.length) { %>
-				<ul class="clearfix" data-card="<%= board.id %>">
-					<% _(board.cards).each(function(card) { %>
-						<li class="cards">
-							<a href=""><%= card.name %></a>
+				<div class="wrap-card" data-card="<%= board.id %>">
+					<p class="name"><a href="<%= board.url %>" title="<%= board.name %>" target="_blank"><%= board.name %></a></p>
 
-							<span><%= card.dateCurrent %></span>
-						</li>
-		 			<% }); %>
-				</ul>
+					<ul class="clearfix" >
+						<% _(board.cards).each(function(card) { %>
+							<li class="cards">
+								<a href="<%= card.url %>" title="<%= card.name %>" class="db" target="_blank"><%= card.name %></a>
+
+								<span class="font-small font-italic"><%= card.dateCurrent %></span>
+							</li>
+			 			<% }); %>
+					</ul>
+				</div>
 	 		<% } %>
 	 	<% }); %>
 	<% } %>

@@ -11,6 +11,9 @@ $color-gray-light: #ccc;
 $color-green: #43B31F;
 $color-green-dark: #3A9A1A;
 
+//
+$header-height: 56px;
+
 body,
 html {
 	@include font-1;
@@ -111,6 +114,10 @@ html {
 .site-header {
 	@include box-sizing(border-box);
 	background-color: $color-blue;
+	min-height: $header-height;
+	position: fixed;
+	top: 0;
+	z-index: 99;
 	width: 100%;
 	padding: 10px 20px;
 
@@ -189,12 +196,12 @@ html {
 .wrapper-boards {
 	@include box-sizing(border-box);
 	background: $color-bg;
+	padding-top: $header-height;
 	min-height: calc(100% - 56px);
 	position: relative;
 
 	> div {
 		@include box-sizing(border-box);
-		float: left;
 
 		$size-boards: 300px;
 		&:first-child {
@@ -205,6 +212,7 @@ html {
 		&:last-child {
 			width: calc(100% - #{$size-boards});
 			padding: 10px;
+			float: right;
 		}
 	}
 
@@ -213,6 +221,8 @@ html {
 		@include box-sizing(border-box);
 		background: $color-white;
 		padding: 5px;
+		position: fixed;
+		left: 0;
 
 		.title {
 			color: $color-base;
@@ -227,6 +237,7 @@ html {
 			width: 100%;
 			margin-bottom: 5px;
 			cursor: pointer;
+			position: relative;
 
 			.label {
 				@include border-radius(5px 0 0 5px);
@@ -241,7 +252,15 @@ html {
 				font-size: 14px;
 			}
 
-			&:hover, &:first-child {
+			.count {
+				font-style: italic;
+			}
+
+			.small {
+				font-size: 10px;
+			}
+
+			&:hover, &:first-child, &.active {
 				color: darken($color-base, 10%);
 				background: rgba($color-blue, 0.3);
 			}
@@ -249,30 +268,48 @@ html {
 	}
 
 	.list-cards {
-		ul {
+		.wrap-card {
 			&:not(:first-child) {
 				display: none;
 			}
 		}
+
+		.name {
+			font-size: 16px;
+			margin-bottom: 20px;
+		}
+
+		// .cards {
+		// 	@include box-shadow(2px 2px 5px rgba($color-base, 0.2));
+		// 	@include box-sizing(border-box);
+		// 	@include border-radius(5px);
+		// 	background: $color-white;
+		// 	width: calc(100% / 4 - 8px);
+		// 	float: left;
+		// 	padding: 20px;
+		// 	min-height: 150px;
+		// 	margin-bottom: 10px;
+
+		// 	&:not(:nth-child(4n)) {
+		// 		margin-right: 10px;
+		// 	}
+		// }
 
 		.cards {
 			@include box-shadow(2px 2px 5px rgba($color-base, 0.2));
 			@include box-sizing(border-box);
 			@include border-radius(5px);
 			background: $color-white;
-			width: calc(100% / 4 - 8px);
-			float: left;
-			padding: 20px;
-			min-height: 150px;
+			min-height: 50px;
+			width: 100%;
 			margin-bottom: 10px;
-
-			&:not(:nth-child(4n)) {
-				margin-right: 10px;
-			}
+			padding: 15px;
 		}
 
 		a {
 			color: $color-base;
+			word-break: break-all;
+			margin-bottom: 5px;
 		}
 	}
 }
