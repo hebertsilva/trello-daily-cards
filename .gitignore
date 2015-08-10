@@ -2,3 +2,4 @@
 .module-cache
 node_modules
 .bundle
+.sass-cache
