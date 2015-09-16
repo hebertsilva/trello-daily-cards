@@ -260,7 +260,7 @@ html {
 				font-size: 10px;
 			}
 
-			&:hover, &:first-child, &.active {
+			&:hover, &.active {
 				color: darken($color-base, 10%);
 				background: rgba($color-blue, 0.3);
 			}

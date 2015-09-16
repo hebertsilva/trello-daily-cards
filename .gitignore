@@ -2,4 +2,5 @@
 .module-cache
 node_modules
 .bundle
-.sass-cache
+*.sass-cache
+compass/.sass-cache

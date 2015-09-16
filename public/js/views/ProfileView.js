@@ -25,12 +25,11 @@ ProfileView.prototype = {
 			that.disableLoagind();
 			that.getCardAll(data);
 			that.showBoards.empty().append(html);
+			that.showBoards.find('ul li:first-child').addClass('active');
 		});
 	},
 
 	getCardAll: function( data ) {
-		console.log(data);
-
 		var that = this;
 		var html = _.template( this.cards, { objects: data });
 		this.showCards.empty().append(html);
@@ -51,8 +50,6 @@ ProfileView.prototype = {
 		
 		$('.board').removeClass('active');
 		target.addClass('active');
-
-		console.log(card);
 
 		if ( card.length ) {
 			var visible = $('[data-card]').not(card).filter(':visible');
