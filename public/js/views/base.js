@@ -31,7 +31,6 @@ BaseView.prototype = {
 					read: true,
 					write: false 
 				},
-				// expiration: "never",
 				success: this.authenticationSuccess
 		    });
 		}
