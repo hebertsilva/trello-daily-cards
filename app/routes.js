@@ -1,20 +1,26 @@
 var template = require('../utils/template');
 var express = require('express');
+var session = require('express-session');
 var Trello = require("node-trello");
 var nunjucks = require('nunjucks');
 var moment = require('moment');
 
 var app = express();
+var sess;
 
 function authorize(req) {
-	if ( req.cookies.key && req.cookies.token ) {
-		return t = new Trello(req.cookies.key, req.cookies.token);
+	sess = req.session;
+	console.log('autorize', sess);
+
+	if ( sess.key && sess.token ) {
+		return t = new Trello(sess.key, sess.token);
 	}
 }
 
 module.exports = function( app ) {	
 	app.get('/profile/me/', function(req, res){
 		if ( authorize(req) ) {
+			console.log(t);
 			t.get('/1/members/me', function(err, customer) {
 			  	if (err) throw err;
 				res.render(template('profile.html'), { 'customer': customer });
@@ -80,8 +86,8 @@ module.exports = function( app ) {
 	// get = boards -> cards = boards
 
 	app.get('/logout/', function(req, res){
-		res.clearCookie('key');
-		res.clearCookie('token');
+		// res.clearCookie('key');
+		// res.clearCookie('token');
 
 		res.json({ url : '/' });
 	});

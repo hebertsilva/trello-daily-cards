@@ -26,14 +26,23 @@ BaseView.prototype = {
 		if ( !this.isAuthorized() ) {			
 			Trello.authorize({
 		        type: 'popup',
-		        success: this.authenticationSuccess
+		        name: "Trello daily cards",
+				scope: {
+					read: true,
+					write: false 
+				},
+				// expiration: "never",
+				success: this.authenticationSuccess
 		    });
 		}
 	},
 
-	authenticationSuccess: function( data ) {
+	authenticationSuccess: function() {
 		this.token = Trello.token();
 		this.key = Trello.key();
+
+		console.log('this.token', this.token);
+		console.log('this.key', this.key);
 
 		$.get('/authentication/', {token: this.token, key: this.key}, function(data){
 			console.log(data);
