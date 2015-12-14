@@ -1,7 +1,6 @@
 var template = require('./utils/template');
 var express = require('express');
 var session = require('express-session');
-// var cookieParser = require('cookie-parser');
 
 var nunjucks = require('nunjucks');
 var env = new nunjucks.Environment(new nunjucks.FileSystemLoader('views'));
