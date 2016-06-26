@@ -35,7 +35,7 @@ app.get('/', function(req, res) {
     sess = req.session;
     // sess.key;
     // sess.token;    
-    console.log(sess);
+    // console.log(sess);
 
     if ( sess.key && sess.token ) {
         res.redirect('/profile/me/');
@@ -52,7 +52,7 @@ app.get('/authentication/', function(req, res) {
     
     res.json({ url: '/profile/me/' });
 
-    console.log(sess);
+    // console.log(sess);
 });
 
 // middlewares Trello API

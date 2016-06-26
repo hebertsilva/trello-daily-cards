@@ -10,7 +10,7 @@ var sess;
 
 function authorize(req) {
 	sess = req.session;
-	console.log('autorize', sess);
+	// console.log('autorize', sess);
 
 	if ( sess.key && sess.token ) {
 		return t = new Trello(sess.key, sess.token);
@@ -20,7 +20,6 @@ function authorize(req) {
 module.exports = function( app ) {	
 	app.get('/profile/me/', function(req, res){
 		if ( authorize(req) ) {
-			console.log(t);
 			t.get('/1/members/me', function(err, customer) {
 			  	if (err) throw err;
 				res.render(template('profile.html'), { 'customer': customer });
@@ -59,7 +58,7 @@ module.exports = function( app ) {
 				  	}).filter(function( item ){
 				  		var dc = moment(item.date);
 
-				  		if ( moment().subtract(5, 'd').isBefore(dc) ) {
+				  		if ( moment().subtract(20, 'd').isBefore(dc) ) {
 							return item;
 						}
 				  	});

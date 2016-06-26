@@ -235,6 +235,7 @@ html {
 .wrapper-boards > div:first-child {
   width: 300px;
   height: 100%;
+  overflow-y: scroll;
 }
 .wrapper-boards > div:last-child {
   width: calc(100% - 300px);
@@ -297,6 +298,7 @@ html {
   zoom: 1;
   *display: inline;
   font-size: 14px;
+  width: 210px;
 }
 .wrapper-boards .list-boards .board .count {
   font-style: italic;
